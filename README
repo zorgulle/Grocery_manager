@@ -1,0 +1,40 @@
+Description
+===========
+Make a server to handle and manage house logitic.
+Stating with Food
+We keep in mind to add more location for example bathroom and drawers
+
+Database
+--------
+products(id, ean, brand, entry_data, expiration_date, threshold_date=expiration_date-3, out_date)
+area(id, name)
+products_zone(product_id, area_id)
+quantities(product_id, quantity, unit)
+quantity_threashold(ean, threshold)
+
+Workflow
+========
+The server recieve a list of EAN
+for each EAN
+    get descripion
+    add it the the DB
+
+
+get description
+---------------
+Ask http://www.product-open-data.com/search/
+Extract commercial name
+Extract brand
+
+
+Feature
+=======
+Warning for consomation date by mail
+------------------------------------
+if current_date >= Warning date
+    send warning mail
+
+Quantity Warning
+----------------
+Make good old join
+
