@@ -1,15 +1,16 @@
 import sqlite3
 from flask import Flask
 from flask import g
-
-DATABASE = './database.db'
+from os import environ
 
 app = Flask(__name__)
+app.config.from_object(environ.get('app_setting'))
 
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
+        full_name = '/'.join((app.config.get("DB_PATH"), app.config.get('DB_NAME')))
+        db = g._database = sqlite3.connect(full_name)
 
     db.row_factory = sqlite3.Row
 
